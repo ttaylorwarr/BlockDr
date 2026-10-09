@@ -807,4 +807,4 @@ function frame(now) {
   }
 }
 requestAnimationFrame(frame);
-window.__game = { player, get: get, setBlock, buildCabin, camera, scene, renderer, sims, setTime: (t) => { timeOfDay = t; }, lockForTest: () => { locked = true; syncMenu(); } };
+window.__game = { raycast, player, get: get, setBlock, buildCabin, camera, scene, renderer, sims, setTime: (t) => { timeOfDay = t; }, lockForTest: () => { locked = true; syncMenu(); } };
