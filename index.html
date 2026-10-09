@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BlockDr - Build Your Wooden House</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:system-ui,sans-serif;color:#fff;user-select:none}
+  canvas{display:block}
+  #cross{position:fixed;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;pointer-events:none}
+  #cross:before,#cross:after{content:"";position:absolute;background:#fff;mix-blend-mode:difference}
+  #cross:before{left:8px;top:0;width:2px;height:18px}
+  #cross:after{top:8px;left:0;height:2px;width:18px}
+  #hotbar{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:#0008;padding:6px;border-radius:8px}
+  .slot{width:48px;height:48px;border:3px solid #555;background:#0006;border-radius:4px;position:relative;box-sizing:border-box}
+  .slot.sel{border-color:#fff;background:#fff3}
+  .slot canvas{width:100%;height:100%;image-rendering:pixelated}
+  .slot span{position:absolute;left:2px;top:0;font-size:11px;text-shadow:1px 1px 0 #000}
+  #hud{position:fixed;top:10px;left:10px;font-size:13px;text-shadow:1px 1px 0 #000;line-height:1.5;background:#0005;padding:8px 12px;border-radius:8px}
+  #name{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);font-size:16px;text-shadow:1px 1px 0 #000;transition:opacity .6s}
+  #clock{position:fixed;top:10px;right:10px;font-size:15px;background:#0005;padding:8px 12px;border-radius:8px}
+  #menu{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;cursor:pointer}
+  #menu h1{font-size:42px;margin:0 0 6px;color:#f5d08a}
+  #menu p{margin:4px;color:#ddd}
+  #menu .keys{margin-top:14px;display:grid;grid-template-columns:auto auto;gap:4px 18px;text-align:left;font-size:14px;color:#cfc}
+  #menu .go{margin-top:20px;padding:12px 28px;background:#4a8f3a;border-radius:8px;font-size:18px}
+  #palette{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;flex-direction:column}
+  #palette .grid{display:grid;grid-template-columns:repeat(8,56px);gap:6px;background:#222;padding:14px;border-radius:10px}
+  #palette .slot{width:56px;height:56px;cursor:pointer}
+  #toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#000a;padding:8px 16px;border-radius:8px;opacity:0;transition:opacity .4s;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="cross"></div>
+<div id="hud"></div>
+<div id="clock"></div>
+<div id="name"></div>
+<div id="toast"></div>
+<div id="hotbar"></div>
+<div id="palette"><h2>Pick a block (click), then press a number key 1-9 to choose slot - or just click to put in current slot</h2><div class="grid" id="pgrid"></div><p>Press B to close</p></div>
+<div id="menu">
+  <h1>🏠 BlockDr</h1>
+  <p>Build wooden houses. Chop trees. Live like a Sim.</p>
+  <div class="keys">
+    <b>W A S D</b><span>Move</span>
+    <b>Space</b><span>Jump (double-tap = fly on/off)</span>
+    <b>Shift</b><span>Down when flying / sprint</span>
+    <b>Left click</b><span>Chop / break block</span>
+    <b>Right click</b><span>Place block</span>
+    <b>1-9 / wheel</b><span>Pick hotbar slot</span>
+    <b>B</b><span>Open all blocks</span>
+    <b>H</b><span>Auto-build a starter cabin</span>
+    <b>T</b><span>Day / night</span>
+    <b>R</b><span>Respawn at start</span>
+  </div>
+  <div class="go">Click to play</div>
+</div>
+<script type="importmap">{"imports":{"three":"./lib/three.module.min.js"}}</script>
+<script type="module" src="./game.js"></script>
+</body>
+</html>
